@@ -29,15 +29,15 @@ module.exports = function(grunt) {
           // strip unnecessary built-ins
           builtins: [ 'events' ],
           insertGlobalVars: {
-            process: function () {
-                return 'undefined';
+            process: function() {
+              return 'undefined';
             },
-            Buffer: function () {
-                return 'undefined';
+            Buffer: function() {
+              return 'undefined';
             }
           }
         },
-        transform: [ 'brfs' ]
+        transform: [ ['babelify', { presets: ['es2015'] }], 'brfs']
       },
       watch: {
         options: {
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
       samples: {
         files: [ '<%= config.sources %>/**/*.*' ],
         tasks: [ 'copy:app' ]
-      },
+      }
     },
     connect: {
       livereload: {
